@@ -3,7 +3,7 @@
 1. clone or Fork before vercel 404 need to pull the latest code
 2. python in README means python3 python
 3. use v2.0 need change vercel setting from gatsby to vite
-4. 2023.09.26 garmin need secret_string(and in Actions) get 
+4. 2023.09.26 garmin need secret_string(and in Actions) get
 
    ```bash
      python run_page/get_garmin_secret.py ${email} ${password}
@@ -130,8 +130,9 @@ English | [简体中文](https://github.com/yihong0618/running_page/blob/master/
 | [itrunner](https://itrunner.cn)                      | <https://itrunner.cn>                          | Garmin      |
 | [maslke](https://github.com/maslke)                  | <https://maslke.space/running_page/>           | Garmin-cn   |
 | [Niewei Yang](https://github.com/Niewei-Yang)        | <https://neewii-worksout.vercel.app/>          | Strava      |
-| [RUN.LOG](https://github.com/bzzd2001)            | <https://run.731558.xyz:6881/>                 | Strava      |
-| [StoneRicky](https://github.com/StoneRicky)       | <https://stonericky.github.io/running_page/>   | COROS       |
+| [RUN.LOG](https://github.com/bzzd2001)               | <https://run.731558.xyz:6881/>                 | Strava      |
+| [StoneRicky](https://github.com/StoneRicky)          | <https://stonericky.github.io/running_page/>   | COROS       |
+| [coutureone](https://github.com/coutureone)          | <https://run.xcouture.cc/>                     | Garmin      |
 </details>
 
 ## How it works
@@ -173,6 +174,7 @@ English | [简体中文](https://github.com/yihong0618/running_page/blob/master/
 - **[Joyrun](#joyrun)**
 - **[Komoot](#komoot)**
 - **[Onelap](#onelap)**
+- **[Intervals.icu](#intervalsicu)**
 
 ## Download
 
@@ -941,6 +943,48 @@ python3 run_page/komoot_sync.py 'your komoot email' 'password' --with-gpx
 ```bash
 python3 run_page/onelap_sync.py 'your onelap phone' 'password' --with-fit
 ```
+
+</details>
+
+### Intervals.icu
+
+<details>
+<summary>Get your <code>Intervals.icu</code> data</summary>
+
+<br>
+
+Sync running activities from [Intervals.icu](https://intervals.icu). Downloads original FIT/GPX files.
+
+1. Log in to [Intervals.icu](https://intervals.icu), go to **Settings** → **Developer Settings** to find your **Athlete ID** and create an **API Key**.
+
+2. Execute in the root directory:
+
+```bash
+python run_page/intervals_icu_sync.py ${athlete_id} ${api_key}
+```
+
+If you want to sync all historical data (default is last 6 months):
+
+```bash
+python run_page/intervals_icu_sync.py ${athlete_id} ${api_key} --all
+```
+
+To specify a custom start date:
+
+```bash
+python run_page/intervals_icu_sync.py ${athlete_id} ${api_key} --start-date 2024-01-01
+```
+
+If your data comes from a Huawei/China device using the GCJ-02 coordinate system, add `--gcj02` to fix the coordinate offset (converts GCJ-02 to WGS-84 in downloaded FIT/GPX/TCX files):
+
+```bash
+python run_page/intervals_icu_sync.py ${athlete_id} ${api_key} --gcj02
+```
+
+#### GitHub Actions
+
+1. Change `RUN_TYPE` to `intervals_icu` in the `run_data_sync.yml` file
+2. Add `INTERVALS_ICU_ATHLETE_ID` and `INTERVALS_ICU_API_KEY` to your GitHub repository secrets
 
 </details>
 
