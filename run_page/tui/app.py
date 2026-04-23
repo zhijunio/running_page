@@ -31,7 +31,6 @@ from .data import (
     make_year_filter,
 )
 
-
 # ── colour palette ─────────────────────────────────────────
 
 # Keep the TUI aligned with the web dark theme in src/styles/index.css.
