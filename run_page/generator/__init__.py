@@ -305,8 +305,6 @@ class Generator:
             "virtualrun",  # Strava / Keep indoor running
             "virtual_run",  # alternate form
         }
-        # ~10 m in degrees (0.0001° ≈ 11 m)
-        TINY_SPREAD_THRESHOLD = 0.0001
 
         # Classify each activity as indoor or outdoor and cache decoded coords
         classified = []  # (dict, is_indoor, decoded_coords_or_None)
