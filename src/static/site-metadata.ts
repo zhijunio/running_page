@@ -17,8 +17,8 @@ const getBasePath = () => {
 const data: ISiteMetadataResult = {
   siteTitle: 'Running',
   siteUrl: 'https://run.zhijun.io',
-  logo: 'https://avatars.githubusercontent.com/u/826932?v=4&size=64',
-  description: 'Running Page',
+  logo: 'https://cos.zhijun.io/images/avatar.webp',
+  description: 'ZhiJun Running',
   navLinks: [
     {
       name: 'Summary',
