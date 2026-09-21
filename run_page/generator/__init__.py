@@ -324,17 +324,11 @@ class Generator:
                 except Exception:  # noqa: BLE001
                     coords = None
 
-            # Strategy 2: no GPS data but has distance → indoor
-            if not is_indoor and coords is None and a.get("distance", 0) > 100:
-                is_indoor = True
+            # Strategy 2 removed: no GPS data no longer implies indoor
+            # Users may run outdoors without GPS tracking
 
-            # Strategy 3: tiny GPS spread → noisy indoor GPS
-            if not is_indoor and coords and len(coords) >= 2:
-                lats = [c[0] for c in coords]
-                lngs = [c[1] for c in coords]
-                spread = max(max(lats) - min(lats), max(lngs) - min(lngs))
-                if spread < TINY_SPREAD_THRESHOLD:
-                    is_indoor = True
+            # Strategy 3 removed: tiny GPS spread no longer implies indoor
+            # Users may have noisy GPS data while running outdoors
 
             classified.append((a, is_indoor, coords))
 

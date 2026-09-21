@@ -111,12 +111,18 @@ if __name__ == "__main__":
 
     # This file is used to record which logs have been uploaded to strava
     # to avoid intrusion into the data.db resulting in double counting of data.
-    with open(KEEP2STRAVA_BK_PATH, "r") as f:
-        try:
-            content = json.loads(f.read())
-        except Exception as e:  # noqa: BLE001
-            print(f"Error reading JSON file {KEEP2STRAVA_BK_PATH}: {e}")
-            content = []
+    if not os.path.exists(KEEP2STRAVA_BK_PATH):
+        print(f"Warning: {KEEP2STRAVA_BK_PATH} not found, creating empty file")
+        with open(KEEP2STRAVA_BK_PATH, "w") as f:
+            json.dump([], f)
+        content = []
+    else:
+        with open(KEEP2STRAVA_BK_PATH, "r") as f:
+            try:
+                content = json.loads(f.read())
+            except Exception as e:  # noqa: BLE001
+                print(f"Error reading JSON file {KEEP2STRAVA_BK_PATH}: {e}")
+                content = []
 
     # Extend and Save the successfully uploaded log to the backup file.
     content.extend(

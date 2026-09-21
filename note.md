@@ -5,18 +5,26 @@ git clone git@github.com:yihong0618/running_page.git
 cd running_page
 python3 -m venv .venv
 source .venv/bin/activate
-python3 -m pip install -r requirements.txt --break-system-packages
+python3 -m pip install -r requirements.txt
 pnpm install
 pnpm develop
 ```
 
-2. 下载 keep 跑步数据：
+2. 下载跑步数据：
 
 ```bash
-python3 run_page/keep_sync.py $KEEP_USERNAME $KEEP_PASSWORD --with-gpx --sync-types=running
-python3 run_page/get_keep_data.py --mobile $KEEP_USERNAME --password $KEEP_PASSWORD
-```
+python3 run_page/keep_sync.py $KEEP_MOBILE $KEEP_PASSWORD --with-gpx --sync-types=running
 
+echo "https://www.strava.com/oauth/authorize?client_id=${STRAVA_CLIENT_ID}&response_type=code&redirect_uri=http://localhost/exchange_token&approval_prompt=force&scope=read_all,profile:read_all,activity:read_all,profile:write,activity:write"
+
+curl -X POST https://www.strava.com/oauth/token \
+-F client_id=${STRAVA_CLIENT_ID} \
+-F client_secret=${STRAVA_CLIENT_SECRET} \
+-F code=686a5be979be1c749e92b0326a1dcb90a15f1345 \
+-F grant_type=authorization_code
+
+python3 run_page/keep_to_strava_sync.py $KEEP_MOBILE $KEEP_PASSWORD $STRAVA_CLIENT_ID $STRAVA_CLIENT_SECRET $STRAVA_REFRESH_TOKEN --sync-types running
+```
 3. 更新 github action
 
 4. 更新网站信息

@@ -8,7 +8,7 @@
 # For security, this token is managed via GitHub Actions secret (MAPBOX_TOKEN)
 # Users should replace with their own token in GitHub Actions secrets
 # See https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions
-mapbox_token: ''
+mapbox_token: 'pk.eyJ1IjoiZGZodDg4IiwiYSI6ImNtazQybXJldDAyemkzcHI1djhyZDBrOGEifQ.pWQcXN66UXiB4R7yQ9OB3Q'
 
 # ── 外观 ─────────────────────────────────────────────────────────────────────
 
@@ -31,13 +31,13 @@ theme_preset: dashboard
 
 goals:
   all:
-    yearly: 2000
-    monthly: 150
+    yearly: 1200
+    monthly: 100
     weekly: 35
     unit: distance
 
   Run:
-    yearly: 2000
-    monthly: 150
+    yearly: 1200
+    monthly: 100
     weekly: 35
     unit: distance
