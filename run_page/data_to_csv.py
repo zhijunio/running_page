@@ -1,5 +1,9 @@
 import sqlite3
-import pandas as pd
+
+try:
+    import pandas as pd
+except Exception:  # noqa: BLE001
+    raise Exception("please install pandas run: pip3 install pandas")  # noqa: TRY002
 from math import floor
 
 data = sqlite3.connect("run_page/data.db")
@@ -9,7 +13,7 @@ df = pd.read_sql_query("SELECT * FROM activities", data)
 def apply_duration_time(d):
     try:
         return d.split()[1].split(".")[0]
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         print(f"Error applying duration time: {e}")
         return ""
 
@@ -31,4 +35,5 @@ def format_pace(d):
 
 df["average_speed"] = df["average_speed"].apply(format_pace)
 df = df.sort_values(by=["start_date"])
+
 df.to_csv("data.csv")
