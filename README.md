@@ -185,10 +185,11 @@ Clone or fork the repo.
 git clone https://github.com/yihong0618/running_page.git --depth=1
 ```
 
-## Installation and testing (node >= 20 python >= 3.12)
+## Installation and testing (node >= 20, Python 3.13)
 
 ```bash
-pip3 install -r requirements.txt
+python3 -m venv .venv
+.venv/bin/python -m pip install -e . -r requirements-dev.txt
 npm install -g corepack && corepack enable && pnpm install
 pnpm develop
 ```
@@ -229,11 +230,11 @@ You can browse your activities in the terminal using the built-in Textual TUI.
 # Using make
 make tui
 
-# Or run directly with uv
-uv run run_page
+# Or run directly from the virtual environment
+.venv/bin/run_page
 
 # Or specify a custom activities.json path
-uv run run_page /path/to/your/activities.json
+.venv/bin/run_page /path/to/your/activities.json
 ```
 
 Keyboard shortcuts inside TUI:

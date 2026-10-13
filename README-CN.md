@@ -195,10 +195,11 @@ R.I.P. 希望大家都能健康顺利的跑过终点，逝者安息。
 git clone https://github.com/yihong0618/running_page.git --depth=1
 ```
 
-## 安装及测试 (node >= 20 python >= 3.12)
+## 安装及测试（Node >= 20，Python 3.13）
 
 ```bash
-pip3 install -r requirements.txt
+python3 -m venv .venv
+.venv/bin/python -m pip install -e . -r requirements-dev.txt
 npm install -g corepack && corepack enable && pnpm install
 pnpm develop
 ```
@@ -239,11 +240,11 @@ python run_page/strava_web_sync.py <JWT> --days 7 --only-run
 # 使用 make
 make tui
 
-# 或直接用 uv 运行
-uv run run_page
+# 或直接从虚拟环境运行
+.venv/bin/run_page
 
 # 或指定自定义的 activities.json 路径
-uv run run_page /path/to/your/activities.json
+.venv/bin/run_page /path/to/your/activities.json
 ```
 
 TUI 中的键盘快捷键：
